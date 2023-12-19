@@ -1,22 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mrt_strjoin.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 16:38:41 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/19 18:51:43 by haekang          ###   ########.fr       */
+/*   Created: 2023/12/19 18:59:22 by haekang           #+#    #+#             */
+/*   Updated: 2023/12/19 19:03:39 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int	main(int ac, char *av[])
+char	*cub_strjoin(char *s1, char *s2)
 {
-	t_info	*info;
+	char	*str;
+	int		len1;
+	int		len2;
+	int		i;
 
-	if (ac != 2)
-		mrt_print_err("Invalid arguments\n");
-	info = mrt_parse(av[1]);
+	len1 = mrt_strlen(s1);
+	len2 = mrt_strlen(s2);
+	str = (char *)malloc(sizeof(char) * (len1 + len2 + 1));
+	if (!str)
+		return (NULL);
+	i = 0;
+	while (i < len1)
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	i = 0;
+	while (i < len2)
+	{
+		str[len1 + i] = s2[i];
+		i++;
+	}
+	str[len1 + i] = '\0';
+	return (str);
 }

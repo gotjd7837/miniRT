@@ -1,22 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mrt_print_err.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 16:38:41 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/19 18:51:43 by haekang          ###   ########.fr       */
+/*   Created: 2023/12/19 18:59:27 by haekang           #+#    #+#             */
+/*   Updated: 2023/12/19 19:03:37 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int	main(int ac, char *av[])
+void	mrt_print_err(char *str)
 {
-	t_info	*info;
-
-	if (ac != 2)
-		mrt_print_err("Invalid arguments\n");
-	info = mrt_parse(av[1]);
+	write(2, "\033[0;35mError\n", mrt_strlen("\033[0;35mError\n"));
+	write(2, str, mrt_strlen(str));
+	write(2, "\033[0;0m", mrt_strlen("\033[0;0m"));
+	exit(1);
 }

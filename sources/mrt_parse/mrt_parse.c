@@ -1,22 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   mrt_parse.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 16:38:41 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/19 18:51:43 by haekang          ###   ########.fr       */
+/*   Created: 2023/12/19 19:05:32 by haekang           #+#    #+#             */
+/*   Updated: 2023/12/19 19:28:35 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-int	main(int ac, char *av[])
+t_info	*mrt_parse(char *file_name)
 {
 	t_info	*info;
+	char	*file_path;
 
-	if (ac != 2)
-		mrt_print_err("Invalid arguments\n");
-	info = mrt_parse(av[1]);
+	file_path = mrt_parse_return_file_path(file_name);
+	info = mrt_parse_load_file(file_path);
+	return (info);
 }
