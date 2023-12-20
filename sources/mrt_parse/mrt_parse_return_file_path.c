@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:10:20 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/19 19:29:12 by haekang          ###   ########.fr       */
+/*   Updated: 2023/12/20 15:09:10 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*mrt_parse_return_file_path(char *file_name)
 	char	*file_path;
 
 	mrt_parse_check_filename(file_name);
-	file_path = mrt_strjoin("./argfiles/", file_name);
+	file_path = mrt_strjoin("./args/", file_name);
 	if (file_path == NULL)
 		mrt_print_err("Malloc failed\n");
 	return (file_path);

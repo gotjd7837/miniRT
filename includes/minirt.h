@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:33:22 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/19 19:35:19 by haekang          ###   ########.fr       */
+/*   Updated: 2023/12/20 15:01:44 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include "mlx/mlx.h"
+
+typedef struct s_list
+{
+	void			*content;
+	struct s_list	*next;
+}					t_list;
 
 typedef struct s_info
 {
@@ -33,5 +39,7 @@ t_info	*mrt_parse_load_file(char *file_path);
 void	mrt_print_err(char *str);
 char	*cub_strjoin(char *s1, char *s2);
 int		mrt_strlen(char *str);
+void	mrt_lst_add_back(t_list **lst, t_list *new);
+t_list	*mrt_lst_new_node(void *content);
 
 #endif
