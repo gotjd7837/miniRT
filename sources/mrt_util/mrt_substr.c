@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 20:02:29 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/20 20:04:42 by haekang          ###   ########.fr       */
+/*   Updated: 2023/12/23 16:52:08 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ char	*mrt_substr(char const *s, unsigned int start, size_t len)
 	char	*arr;
 
 	i = 0;
-	if (ft_strlen(s) < len + start)
-		len = ft_strlen(s) - start;
-	if (ft_strlen(s) > start)
+	if (mrt_strlen(s) < len + start)
+		len = mrt_strlen(s) - start;
+	if (mrt_strlen(s) > start)
 	{
 		arr = (char *)malloc(sizeof(char) * (len + 1));
 		if (arr == NULL)

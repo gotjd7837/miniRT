@@ -1,32 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mrt_strdup.c                                       :+:      :+:    :+:   */
+/*   mrt_parse_insert_light.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/20 20:06:27 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/23 16:51:38 by haekang          ###   ########.fr       */
+/*   Created: 2023/12/23 18:14:57 by haekang           #+#    #+#             */
+/*   Updated: 2023/12/23 20:35:31 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-char	*mrt_strdup(const char *s1)
+void	mrt_parse_insert_light(char **line_info, t_info *info, int *flags)
 {
-	int		i;
-	char	*str;
-
-	i = mrt_strlen(s1);
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (str == NULL)
-		return (NULL);
-	i = 0;
-	while (s1[i])
-	{
-		str[i] = s1[i];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
+    *flags = mrt_bit_increase(*flags, LIGHT_IDX);
 }

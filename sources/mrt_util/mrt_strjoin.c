@@ -6,13 +6,13 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 18:59:22 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/19 19:03:39 by haekang          ###   ########.fr       */
+/*   Updated: 2023/12/23 16:51:48 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-char	*cub_strjoin(char *s1, char *s2)
+char	*mrt_strjoin(char *s1, char *s2)
 {
 	char	*str;
 	int		len1;

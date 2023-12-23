@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mrt_strdup.c                                       :+:      :+:    :+:   */
+/*   mrt_strlcpy.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/20 20:06:27 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/23 16:51:38 by haekang          ###   ########.fr       */
+/*   Created: 2023/12/23 16:50:17 by haekang           #+#    #+#             */
+/*   Updated: 2023/12/23 16:51:12 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-char	*mrt_strdup(const char *s1)
+size_t	mrt_strlcpy(char *dst, char *src, size_t dstsize)
 {
-	int		i;
-	char	*str;
+	size_t	i;
 
-	i = mrt_strlen(s1);
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (str == NULL)
-		return (NULL);
 	i = 0;
-	while (s1[i])
+	if (dstsize == 0)
+		return (mrt_strlen(src));
+	while (src[i] && (i + 1 < dstsize))
 	{
-		str[i] = s1[i];
+		dst[i] = src[i];
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	dst[i] = '\0';
+	return (mrt_strlen(src));
 }

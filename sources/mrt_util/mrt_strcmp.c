@@ -1,32 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mrt_strdup.c                                       :+:      :+:    :+:   */
+/*   mrt_strcmp.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/20 20:06:27 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/23 16:51:38 by haekang          ###   ########.fr       */
+/*   Created: 2023/12/23 16:18:37 by haekang           #+#    #+#             */
+/*   Updated: 2023/12/23 16:41:40 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-char	*mrt_strdup(const char *s1)
+int	mrt_strcmp(char *s1, char *s2)
 {
 	int		i;
-	char	*str;
 
-	i = mrt_strlen(s1);
-	str = (char *)malloc(sizeof(char) * (i + 1));
-	if (str == NULL)
-		return (NULL);
 	i = 0;
-	while (s1[i])
+	while (s1[i] || s2[i])
 	{
-		str[i] = s1[i];
+		if (s1[i] != s2[i])
+			return (s1[i] - s2[i]);
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	return (0);
 }
