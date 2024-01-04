@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: haeseong <haeseong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:33:22 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/23 20:33:21 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/02 17:26:39 by haeseong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ typedef struct s_light
 {
 	t_point	point;
 	double	ratio;
+	t_color	color;
 }	t_light;
 
 typedef struct s_camera
@@ -89,9 +90,9 @@ typedef struct s_ambient
 typedef struct s_info
 {
 	void		*mlx;
-	t_ambient	ambient;
-	t_camera	camera;
-	t_light		light;
+	t_ambient	*ambient;
+	t_camera	*camera;
+	t_light		*light;
 	t_list		*sphere;
 	t_list		*plane;
 	t_list		*cylinder;
