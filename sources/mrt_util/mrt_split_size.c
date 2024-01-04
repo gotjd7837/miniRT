@@ -1,24 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mrt_parse.c                                        :+:      :+:    :+:   */
+/*   mrt_split_size.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 19:05:32 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/04 21:39:24 by haekang          ###   ########.fr       */
+/*   Created: 2024/01/04 18:44:15 by haekang           #+#    #+#             */
+/*   Updated: 2024/01/04 18:46:18 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_info	*mrt_parse(char *file_name)
+int	mrt_split_size(char **split)
 {
-	t_info	*info;
-	char	*file_path;
+	int	i;
 
-	file_path = mrt_parse_return_file_path(file_name);
-	info = mrt_parse_load_file(file_path);
-	return (info);
+	i = 0;
+	while (split[i])
+		i++;
+	return (i);
 }
-//모든 identifier를 파싱했는지 확인해주는 기능 구현필요

@@ -1,24 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mrt_parse.c                                        :+:      :+:    :+:   */
+/*   mrt_atoi.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/19 19:05:32 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/04 21:39:24 by haekang          ###   ########.fr       */
+/*   Created: 2024/01/04 16:14:32 by haekang           #+#    #+#             */
+/*   Updated: 2024/01/04 21:08:41 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_info	*mrt_parse(char *file_name)
+int	mrt_atoi(char *str)
 {
-	t_info	*info;
-	char	*file_path;
+	int	res;
+	int	sign;
 
-	file_path = mrt_parse_return_file_path(file_name);
-	info = mrt_parse_load_file(file_path);
-	return (info);
+	res = 0;
+	sign = 1;
+	if (*str == '-')
+	{
+		sign = -1;
+		str++;
+	}
+	while (*str != '\0' && *str != '\n')
+	{
+		if (*str < '0' || *str > '9')
+			mrt_print_err("atoi error\n");
+		res = res * 10 + (*str - '0');
+		str++;
+	}
+	return (sign * res);
 }
-//모든 identifier를 파싱했는지 확인해주는 기능 구현필요

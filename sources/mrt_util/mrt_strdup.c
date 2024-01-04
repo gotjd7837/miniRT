@@ -6,13 +6,13 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 20:06:27 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/23 16:51:38 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/04 20:44:29 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-char	*mrt_strdup(const char *s1)
+char	*mrt_strdup(char *s1)
 {
 	int		i;
 	char	*str;

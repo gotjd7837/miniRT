@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd_back_bonus.c                             :+:      :+:    :+:   */
+/*   mrt_lst_add_back.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/06 16:49:52 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/20 15:00:54 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/04 20:29:39 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	mrt_lst_add_back(t_list **lst, t_list *new)
 
 	node = *lst;
 	if (lst == NULL || new == NULL)
-		return ;
+		mrt_print_err("malloc failed\n");
 	if (*lst == NULL)
 		*lst = new;
 	else

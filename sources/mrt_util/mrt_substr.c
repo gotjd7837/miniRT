@@ -6,15 +6,15 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/20 20:02:29 by haekang           #+#    #+#             */
-/*   Updated: 2023/12/23 16:52:08 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/04 20:46:12 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-char	*mrt_substr(char const *s, unsigned int start, size_t len)
+char	*mrt_substr(char *s, int start, int len)
 {
-	size_t	i;
+	int		i;
 	char	*arr;
 
 	i = 0;

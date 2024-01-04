@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   mrt_parse_init_info.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haeseong <haeseong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 17:17:09 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/02 17:27:23 by haeseong         ###   ########.fr       */
+/*   Updated: 2024/01/04 19:46:27 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_info	*mrt_parse_init_info(t_info *info)
+t_info	*mrt_parse_init_info(void)
 {
 	t_info	*info;
 

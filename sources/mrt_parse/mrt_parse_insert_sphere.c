@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mrt_parse_insert_sphere.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haeseong <haeseong@student.42.fr>          +#+  +:+       +#+        */
+/*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:15:02 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/02 17:11:11 by haeseong         ###   ########.fr       */
+/*   Updated: 2024/01/04 20:42:13 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,18 @@ void	mrt_parse_insert_sphere(char **line_info, t_info *info)
 	if (line_info[1] == NULL)
 		mrt_print_err("Do not input point for Sphere\n");
 	else
-		mrt_parse_insert_point();
+		mrt_parse_insert_point(line_info[1], &(sphere->point));
 	if (line_info[2] == NULL)
 		mrt_print_err("Do not input diameter for Sphere\n");
 	else
-		mrt_parse_insert_sphere_diameter();
+		mrt_parse_insert_diameter(line_info[2], &(sphere->diameter));
 	if (line_info[3] == NULL)
 		mrt_print_err("Do not input color for Sphere\n");
 	else
-		mrt_parse_insert_color();
+		mrt_parse_insert_color(line_info[3], &(sphere->color));
 	if (line_info[4] == NULL)
 		return ;
 	else
 		mrt_print_err("Incorrect information for Sphere\n");
-	mrt_lst_add_back(&(info->sphere), mrt_lst_new(sphere));
+	mrt_lst_add_back(&(info->sphere), mrt_lst_new_node(sphere));
 }
