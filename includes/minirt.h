@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:33:22 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/04 20:46:05 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:38:12 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include "mlx/mlx.h"
 
 # define BUFFER_SIZE 42
-# define AMBIENT_IDX 0
-# define CAMERA_IDX 1
-# define LIGHT_IDX 2
+# define AMBIENT_IDX 1
+# define CAMERA_IDX 2
+# define LIGHT_IDX 3
 
 typedef struct s_list
 {
@@ -101,7 +101,7 @@ typedef struct s_info
 //mrt_parse
 t_info	*mrt_parse(char *file_name);
 char	*mrt_parse_return_file_path(char *file_name);
-t_info	*mrt_parse_load_file(char *file_path);
+void	*mrt_parse_load_file(char *file_path, t_info *info);
 t_info	*mrt_parse_init_info(void);
 void	mrt_parse_insert_sphere(char **line_info, t_info *info);
 void	mrt_parse_insert_plane(char **line_info, t_info *info);

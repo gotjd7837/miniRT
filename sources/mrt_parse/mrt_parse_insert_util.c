@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:46:33 by haeseong          #+#    #+#             */
-/*   Updated: 2024/01/04 21:42:01 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:33:33 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	mrt_parse_insert_ratio(char *line_info, double *ratio)
 	if (mrt_split_size(ratio_info) != 1)
 		mrt_print_err("Incorrect information for ratio\n");
 	*ratio = mrt_atod(ratio_info[0]);
-	printf("ratio: %f\n", *ratio);
 	while (i < 1)
 		free(ratio_info[i++]);
 	free(ratio_info);

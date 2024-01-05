@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:20:18 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/04 20:56:43 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:40:28 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,15 +64,13 @@ void	mrt_parse_read_file(int fd, t_info *info)
 	}
 }
 
-t_info	*mrt_parse_load_file(char *file_path)
+void	*mrt_parse_load_file(char *file_path, t_info *info)
 {
 	int		fd;
-	t_info	*info;
 
 	fd = open(file_path, O_RDONLY);
 	if (fd < 0)
 		mrt_print_err("file open error\n");
-	info = mrt_parse_init_info();
 	mrt_parse_read_file(fd, info);
 	close(fd);
 	return (info);

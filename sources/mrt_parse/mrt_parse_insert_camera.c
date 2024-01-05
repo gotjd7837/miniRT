@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:14:52 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/04 20:54:02 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:42:24 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,10 @@ void	mrt_parse_insert_camera(char **line_info, t_info *info, int *flags)
 	else
 		mrt_parse_insert_camera_fov(line_info[3], &(camera->fov));
 	if (line_info[4] == NULL)
+	{
+		info->camera = camera;
 		return ;
+	}
 	else
 		mrt_print_err("Incorrect information for Camera\n");
-	info->camera = camera;
 }

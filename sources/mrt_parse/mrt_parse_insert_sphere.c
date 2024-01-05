@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:15:02 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/04 20:42:13 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:43:49 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ void	mrt_parse_insert_sphere(char **line_info, t_info *info)
 	else
 		mrt_parse_insert_color(line_info[3], &(sphere->color));
 	if (line_info[4] == NULL)
+	{
+		mrt_lst_add_back(&(info->sphere), mrt_lst_new_node(sphere));
 		return ;
+	}
 	else
 		mrt_print_err("Incorrect information for Sphere\n");
-	mrt_lst_add_back(&(info->sphere), mrt_lst_new_node(sphere));
 }

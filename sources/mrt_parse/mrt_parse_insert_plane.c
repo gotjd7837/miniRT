@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:14:59 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/04 20:42:08 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:43:36 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,10 @@ void	mrt_parse_insert_plane(char **line_info, t_info *info)
 	else
 		mrt_parse_insert_color(line_info[3], &(plane->color));
 	if (line_info[4] == NULL)
+	{
+		mrt_lst_add_back(&(info->plane), mrt_lst_new_node(plane));
 		return ;
+	}
 	else
 		mrt_print_err("Incorrect information for Plane\n");
-	mrt_lst_add_back(&(info->plane), mrt_lst_new_node(plane));
 }

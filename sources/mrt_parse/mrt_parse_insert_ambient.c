@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:14:49 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/04 20:58:59 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/05 16:41:12 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,10 @@ void	mrt_parse_insert_ambient(char **line_info, t_info *info, int *flags)
 	else
 		mrt_parse_insert_color(line_info[2], &(ambient->color));
 	if (line_info[3] == NULL)
+	{
+		info->ambient = ambient;
 		return ;
+	}
 	else
 		mrt_print_err("Incorrect information for Ambient\n");
-	info->ambient = ambient;
 }
