@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:20:18 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/05 16:40:28 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/10 03:56:27 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,15 @@ void	mrt_parse_insert_element(char **line_info, t_info *info)
 		mrt_print_err("Invalid identifier\n");
 }
 
-void	mrt_parse_read_file(int fd, t_info *info)
+void	*mrt_parse_load_file(char *file_path, t_info *info)
 {
 	char	*line;
 	char	**line_info;
+	int		fd;
 
+	fd = open(file_path, O_RDONLY);
+	if (fd < 0)
+		mrt_print_err("file open error\n");
 	while (1)
 	{
 		line = mrt_get_next_line(fd);
@@ -62,16 +66,6 @@ void	mrt_parse_read_file(int fd, t_info *info)
 		mrt_parse_insert_element(line_info, info);
 		mrt_parse_free_line(line, line_info);
 	}
-}
-
-void	*mrt_parse_load_file(char *file_path, t_info *info)
-{
-	int		fd;
-
-	fd = open(file_path, O_RDONLY);
-	if (fd < 0)
-		mrt_print_err("file open error\n");
-	mrt_parse_read_file(fd, info);
 	close(fd);
 	return (info);
 }

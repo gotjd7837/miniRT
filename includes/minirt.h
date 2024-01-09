@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:33:22 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/05 16:38:12 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/10 08:33:00 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,23 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <math.h> 
+# include <float.h>
+# include <string.h>
 # include "mlx/mlx.h"
 
+# define WIDTH 1920
+# define HEIGHT 1080
+# define INF 1000000000
+# define EPSILON 1e-10
+# define TRUE 1
+# define FALSE 0
 # define BUFFER_SIZE 42
 # define AMBIENT_IDX 1
 # define CAMERA_IDX 2
 # define LIGHT_IDX 3
+
+typedef struct s_point	t_color;
 
 typedef struct s_list
 {
@@ -36,13 +47,6 @@ typedef struct s_point
 	double	y;
 	double	z;
 }	t_point;
-
-typedef struct s_color
-{
-	int	r;
-	int	g;
-	int	b;
-}	t_color;
 
 typedef struct s_cylinder
 {
@@ -79,6 +83,10 @@ typedef struct s_camera
 	t_point	point;
 	t_point	vector;
 	double	fov;
+	t_point	horizontal;
+	t_point	vertical;
+	double	focal_len;
+	t_point	left_bottom;
 }	t_camera;
 
 typedef struct s_ambient
@@ -87,9 +95,32 @@ typedef struct s_ambient
 	t_color	color;
 }	t_ambient;
 
+typedef struct s_ray
+{
+	t_point	point;
+	t_point	vector;
+	double	hit_t;
+	t_color	color;
+	t_point	hit_point;
+	void	*hit_obj;
+	t_point	obj_normal;
+}	t_ray;
+
+typedef struct s_data
+{
+	void	*img;
+	char	*addr;
+	int		bits_per_pixel;
+	int		line_length;
+	int		endian;
+}	t_data;
+
+
 typedef struct s_info
 {
 	void		*mlx;
+	void		*win;
+	t_data		img;
 	t_ambient	*ambient;
 	t_camera	*camera;
 	t_light		*light;
@@ -133,5 +164,36 @@ int		mrt_bit_increase(int bit_set, int bit_index);
 int		mrt_atoi(char *str);
 double	mrt_atod(char *str);
 int		mrt_split_size(char **split);
+
+//mrt_render
+void	mrt_render(t_info *info);
+t_color	mrt_ray_trace(t_info *info, t_ray *ray);
+void	mrt_put_pixel(t_info *info, int x, int y, t_color color);
+t_point	mrt_ray_at(t_ray *ray, double t);
+void	mrt_ray_trace_sphere(t_info *info, t_ray *ray);
+double	mrt_hit_sphere(t_ray *ray, t_sphere *sphere);
+
+
+
+
+//vec_util
+t_point	vec3(double x, double y, double z);
+t_point	point3(double x, double y, double z);
+t_color	color3(double r, double g, double b);
+void	vset(t_point *vec, double x, double y, double z);
+double	vlength2(t_point vec);
+double      vlength(t_point vec);
+t_point      vplus(t_point vec, t_point vec2);
+t_point      vplus_(t_point vec, double x, double y, double z);
+t_point      vminus(t_point vec, t_point vec2);
+t_point      vminus_(t_point vec, double x, double y, double z);
+t_point      vmult(t_point vec, double t);
+t_point      vmult_(t_point vec, t_point vec2);
+t_point      vdivide(t_point vec, double t);
+double      vdot(t_point vec, t_point vec2);
+t_point      vcross(t_point vec, t_point vec2);
+t_point      vunit(t_point vec);
+t_point  vmin(t_point vec1, t_point vec2);
+
 
 #endif

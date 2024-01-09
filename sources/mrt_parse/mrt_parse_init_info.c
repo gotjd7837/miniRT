@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 17:17:09 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/04 19:46:27 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/09 20:20:37 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,10 @@ t_info	*mrt_parse_init_info(void)
 	if (info == NULL)
 		mrt_print_err("Malloc failed\n");
 	info->mlx = mlx_init();
+	info->win = mlx_new_window(info->mlx, WIDTH, HEIGHT, "miniRT");
+	info->img.img = mlx_new_image(info->mlx, WIDTH, HEIGHT);
+	info->img.addr = mlx_get_data_addr(info->img.img, &info->img.bits_per_pixel,
+			&info->img.line_length, &info->img.endian);
 	info->ambient = NULL;
 	info->camera = NULL;
 	info->light = NULL;

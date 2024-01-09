@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:46:33 by haeseong          #+#    #+#             */
-/*   Updated: 2024/01/05 16:33:33 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/10 03:59:50 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	mrt_parse_insert_color(char *line_info, t_color *color)
 		mrt_print_err("malloc failed\n");
 	if (mrt_split_size(rgb) != 3)
 		mrt_print_err("Incorrect information for color\n");
-	color->r = mrt_atoi(rgb[0]);
-	color->g = mrt_atoi(rgb[1]);
-	color->b = mrt_atoi(rgb[2]);
+	color->x = mrt_atod(rgb[0]);
+	color->y = mrt_atod(rgb[1]);
+	color->z = mrt_atod(rgb[2]);
 	while (i < 3)
 		free(rgb[i++]);
 	free(rgb);
