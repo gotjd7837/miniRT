@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:33:22 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/10 08:33:00 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/12 15:05:11 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,6 @@ typedef struct s_data
 	int		endian;
 }	t_data;
 
-
 typedef struct s_info
 {
 	void		*mlx;
@@ -170,11 +169,9 @@ void	mrt_render(t_info *info);
 t_color	mrt_ray_trace(t_info *info, t_ray *ray);
 void	mrt_put_pixel(t_info *info, int x, int y, t_color color);
 t_point	mrt_ray_at(t_ray *ray, double t);
+t_color	mrt_get_color(t_info *info, t_ray *ray);
 void	mrt_ray_trace_sphere(t_info *info, t_ray *ray);
-double	mrt_hit_sphere(t_ray *ray, t_sphere *sphere);
-
-
-
+void	mrt_ray_trace_plane(t_info *info, t_ray *ray);
 
 //vec_util
 t_point	vec3(double x, double y, double z);

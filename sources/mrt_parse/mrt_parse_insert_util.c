@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:46:33 by haeseong          #+#    #+#             */
-/*   Updated: 2024/01/10 03:59:50 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/12 19:40:58 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,9 @@ void	mrt_parse_insert_color(char *line_info, t_color *color)
 	color->x = mrt_atod(rgb[0]);
 	color->y = mrt_atod(rgb[1]);
 	color->z = mrt_atod(rgb[2]);
+	if (color->x < 0 || color->x > 255 || color->y < 0 || color->y > 255
+		|| color->z < 0 || color->z > 255)
+		mrt_print_err("Incorrect information for color\n");
 	while (i < 3)
 		free(rgb[i++]);
 	free(rgb);

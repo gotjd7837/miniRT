@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 07:45:08 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/10 07:45:21 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/12 20:33:13 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,7 @@ void	mrt_put_pixel(t_info *info, int x, int y, t_color color)
 	r = color.x;
 	g = color.y;
 	b = color.z;
-	rgb = ((int)(255.999 * r) << 16) + ((int)(255.999 * g) << 8)
-		+ ((int)(255.999 * b));
+	rgb = ((int)r << 16) + ((int)g << 8) + ((int)b);
 	dst = info->img.addr + (y * info->img.line_length + x
 			* (info->img.bits_per_pixel / 8));
 	*(unsigned int *)dst = rgb;

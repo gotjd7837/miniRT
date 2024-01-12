@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 07:41:48 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/10 08:10:28 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/12 19:52:30 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,25 @@ void	mrt_get_camera_info(t_camera *camera)
 	camera->left_bottom = tmp;
 }
 
+
+
+
+
+
+
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
+	*(unsigned int *)dst = color;
+}
+
 void	mrt_render(t_info *info)
 {
 	t_ray		ray;
-	t_color		color;
+	t_color		color_pixel;
 	int			x;
 	int			y;
 
@@ -61,8 +76,8 @@ void	mrt_render(t_info *info)
 		{
 			ray.point = info->camera->point;
 			ray.vector = mrt_get_ray_vector(info, x, y);
-			color = mrt_ray_trace(info, &ray);
-			mrt_put_pixel(info, x, y, color);
+			color_pixel = mrt_ray_trace(info, &ray);
+			mrt_put_pixel(info, x, y, color_pixel);
 			x++;
 		}
 		y--;
