@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mrt_parse_insert_util.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: inlim <inlim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:46:33 by haeseong          #+#    #+#             */
-/*   Updated: 2024/01/12 19:40:58 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/13 01:57:05 by inlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	mrt_parse_insert_vector(char *line_info, t_point *vector)
 	vector->x = mrt_atod(xyz[0]);
 	vector->y = mrt_atod(xyz[1]);
 	vector->z = mrt_atod(xyz[2]);
+	*vector = vunit(*vector);
 	while (i < 3)
 		free(xyz[i++]);
 	free(xyz);
