@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 07:41:48 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/12 19:52:30 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/13 02:27:15 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,6 @@ void	mrt_get_camera_info(t_camera *camera)
 	tmp = vminus(tmp, vmult(camera->horizontal, (float)(WIDTH - 1) / 2));
 	tmp = vminus(tmp, vmult(camera->vertical, (float)(HEIGHT - 1) / 2));
 	camera->left_bottom = tmp;
-}
-
-
-
-
-
-
-
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel / 8));
-	*(unsigned int *)dst = color;
 }
 
 void	mrt_render(t_info *info)
