@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inlim <inlim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:33:22 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/13 02:27:03 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/13 10:28:29 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -172,6 +172,18 @@ t_point	mrt_ray_at(t_ray *ray, double t);
 t_color	mrt_get_color(t_info *info, t_ray *ray);
 void	mrt_ray_trace_sphere(t_info *info, t_ray *ray);
 void	mrt_ray_trace_plane(t_info *info, t_ray *ray);
+void	mrt_ray_trace_cylinder(t_info *info, t_ray *ray);
+void	mrt_rescale_color(t_color *color);
+void	mrt_color_overflow(t_color *color);
+void	mrt_get_camera_info(t_camera *camera);
+
+
+double	mrt_hit_sphere(t_ray *ray, t_sphere *sphere);
+double	mrt_hit_plane(t_ray *ray, t_plane *plane);
+double	mrt_hit_cylinder(t_ray *ray, t_cylinder *cy);
+double	mrt_hit_pillar(t_ray *ray, t_cylinder *cy);
+double	mrt_hit_upper_disk(t_ray *ray, t_cylinder *cy);
+double	mrt_hit_down_disk(t_ray *ray, t_cylinder *cy);
 
 //vec_util
 t_point	vec3(double x, double y, double z);

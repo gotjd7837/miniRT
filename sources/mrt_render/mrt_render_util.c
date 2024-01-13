@@ -6,11 +6,28 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 07:45:08 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/13 02:26:59 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/13 04:26:51 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
+
+void	mrt_color_overflow(t_color *color)
+{
+	if (color->x > 1)
+		color->x = 1;
+	if (color->y > 1)
+		color->y = 1;
+	if (color->z > 1)
+		color->z = 1;
+}
+
+void	mrt_rescale_color(t_color *color)
+{
+	color->x = color->x / 255;
+	color->y = color->y / 255;
+	color->z = color->z / 255;
+}
 
 t_point	mrt_ray_at(t_ray *ray, double t)
 {
@@ -31,7 +48,8 @@ void	mrt_put_pixel(t_info *info, int x, int y, t_color color)
 	r = color.x;
 	g = color.y;
 	b = color.z;
-	rgb = ((int)(r * 255.999) << 16) + ((int)(g * 255.999) << 8) + (int)(b * 255.999);
+	rgb = ((int)(r * 255.999) << 16) + ((int)(g * 255.999) << 8)
+		+ (int)(b * 255.999);
 	dst = info->img.addr + (y * info->img.line_length + x
 			* (info->img.bits_per_pixel / 8));
 	*(unsigned int *)dst = rgb;
