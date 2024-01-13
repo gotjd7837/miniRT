@@ -1,28 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   mrt_ray_trace.c                                    :+:      :+:    :+:   */
+/*   mrt_shadow.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/01/10 07:43:44 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/13 10:26:07 by haekang          ###   ########.fr       */
+/*   Created: 2024/01/13 10:29:34 by haekang           #+#    #+#             */
+/*   Updated: 2024/01/13 10:29:52 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
 
-t_color	mrt_ray_trace(t_info *info, t_ray *ray)
+int	mrt_shadow(t_info *info, t_ray *ray, t_point light_vec, double light_len)
 {
-	t_color	color;
+	t_ray	shadow_ray;
 
-	ray->hit_t = INF;
-	mrt_ray_trace_sphere(info, ray);
-	mrt_ray_trace_plane(info, ray);
-	mrt_ray_trace_cylinder(info, ray);
-	if (ray->hit_t == INF || ray->hit_t == 0)
-		color = color3(0, 0, 0);
-	else
-		color = mrt_get_color(info, ray);
-	return (color);
+	shadow_ray.hit_t = INF;
+	shadow_ray.point = ray->hit_point;
+	shadow_ray.vector = light_vec;
+	mrt_ray_trace(info, &shadow_ray);
+	if (shadow_ray.hit_t > EPSILON && shadow_ray.hit_t < light_len)
+		return (TRUE);
+	return (FALSE);
 }

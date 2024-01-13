@@ -6,43 +6,11 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:07:24 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/13 02:26:28 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/13 10:30:23 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/minirt.h"
-
-// int	mrt_is_shadow(t_info *info, t_ray *ray, t_point light_vec,
-// 		double light_len)
-// {
-// 	t_ray	shadow_ray;
-// 	t_object	*obj;
-
-// 	shadow_ray.point = ray->hit_point;
-// 	shadow_ray.vector = light_vec;
-// 	shadow_ray.t = light_len;
-// 	obj = mrt_get_closest_object(info, &shadow_ray);
-// 	if (obj != NULL)
-// 		return (1);
-// 	return (0);
-// }
-
-void	mrt_rescale_color(t_color *color)
-{
-	color->x = color->x / 255;
-	color->y = color->y / 255;
-	color->z = color->z / 255;
-}
-
-void	mrt_color_overflow(t_color *color)
-{
-	if (color->x > 1)
-		color->x = 1;
-	if (color->y > 1)
-		color->y = 1;
-	if (color->z > 1)
-		color->z = 1;
-}
 
 t_color	mrt_get_ambient(t_info *info, t_ray *ray)
 {
@@ -67,8 +35,8 @@ t_color	mrt_get_specular(t_info *info, t_ray *ray)
 	light_vec = vminus(ray->hit_point, light->point);
 	light_len = vlength(light_vec);
 	light_vec = vunit(light_vec);
-    // if (mrt_is_shadow(info, ray, light_vec, light_len))
-    // 	return (specular);
+	// if (mrt_shadow(info, ray, light_vec, light_len))
+	// 	return (color3(0, 0, 0));
 	reflect_vec = vminus(vmult(ray->obj_normal,
 				2 * vdot(ray->obj_normal, light_vec)), light_vec);
 	specular = vplus(specular, vmult(light->color,
@@ -89,8 +57,8 @@ t_color	mrt_get_diffuse(t_info *info, t_ray *ray)
 	light_vec = vminus(light->point, ray->hit_point);
 	light_len = vlength(light_vec);
 	light_vec = vunit(light_vec);
-    // if (mrt_is_shadow(info, ray, light_vec, light_len))
-    // 	return (diffuse);
+	if (mrt_shadow(info, ray, light_vec, light_len))
+		return (color3(0, 0, 0));
 	diffuse = vplus(diffuse, vmult(light->color,
 				fmax(0, vdot(ray->obj_normal, light_vec))));
 	mrt_rescale_color(&diffuse);
