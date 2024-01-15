@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mrt_cylinder_util.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inlim <inlim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/14 19:55:57 by inlim             #+#    #+#             */
-/*   Updated: 2024/01/15 14:49:02 by inlim            ###   ########.fr       */
+/*   Updated: 2024/01/15 20:17:14 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	renew_t_pillar(t_ray *ray, t_cylinder *cy, double hit_t)
 		cp = vminus(ray->hit_point, cy->point);
 		qp = (vminus(cp, vmult(cy->vector, vdot(cp, cy->vector))));
 		ray->obj_normal = vunit(qp);
-		set_face_normal(ray, &(ray->obj_normal));	//구가 카메라 감쌀때 처리
+		set_face_normal(ray, &(ray->obj_normal));
 	}
 }
 
@@ -77,6 +77,6 @@ void	renew_t_disk(t_ray *ray, t_cylinder *cy, double hit_t, int sign)
 		ray->hit_point = mrt_ray_at(ray, hit_t);
 		ray->hit_obj = cy;
 		ray->obj_normal = vmult(cy->vector, sign);
-		set_face_normal(ray, &(ray->obj_normal));	//구가 카메라 감쌀때 처리
+		set_face_normal(ray, &(ray->obj_normal));
 	}
 }

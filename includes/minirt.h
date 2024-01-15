@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:33:22 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/15 16:37:19 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/15 20:16:34 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,6 @@ typedef struct s_discrimination
 	double	expression;
 }	t_discrimination;
 
-
 //mrt_parse
 t_info	*mrt_parse(char *file_name);
 char	*mrt_parse_return_file_path(char *file_name);
@@ -188,23 +187,20 @@ void	mrt_ray_trace_cylinder(t_info *info, t_ray *ray);
 void	mrt_rescale_color(t_color *color);
 void	mrt_color_overflow(t_color *color);
 void	mrt_get_camera_info(t_camera *camera);
-void    set_face_normal(t_ray *r, t_point *obj_n);
+void	set_face_normal(t_ray *r, t_point *obj_n);
 void	mrt_mlx_loop(t_info *info);
 
 // mrt_shadow
-int	mrt_shadow(t_info *info, t_ray *ray, t_point light_vec, double light_len);
-
+int		mrt_shadow(t_info *info, t_ray *ray, t_point light_vec, double light_l);
 double	mrt_hit_sphere(t_ray *ray, t_sphere *sphere);
 double	mrt_hit_plane(t_ray *ray, t_plane *plane);
 double	mrt_hit_cylinder(t_ray *ray, t_cylinder *cy);
 double	mrt_hit_pillar(t_ray *ray, t_cylinder *cy);
-double mrt_hit_disk(t_ray *ray, t_cylinder *cy, int sign);
-
+double	mrt_hit_disk(t_ray *ray, t_cylinder *cy, int sign);
 double	choice_pillar_root(t_ray *ray, t_cylinder *cy, double roots[]);
 void	init_pillar_dis(t_ray *ray, t_cylinder *cy, t_discrimination *dis);
 void	renew_t_pillar(t_ray *ray, t_cylinder *cy, double hit_t);
 void	renew_t_disk(t_ray *ray, t_cylinder *cy, double hit_t, int sign);
-
 
 //vec_util
 t_point	vec3(double x, double y, double z);
@@ -212,18 +208,16 @@ t_point	point3(double x, double y, double z);
 t_color	color3(double r, double g, double b);
 void	vset(t_point *vec, double x, double y, double z);
 double	vlength2(t_point vec);
-double      vlength(t_point vec);
-t_point      vplus(t_point vec, t_point vec2);
-t_point      vplus_(t_point vec, double x, double y, double z);
-t_point      vminus(t_point vec, t_point vec2);
-t_point      vminus_(t_point vec, double x, double y, double z);
-t_point      vmult(t_point vec, double t);
-t_point      vmult_(t_point vec, t_point vec2);
-t_point      vdivide(t_point vec, double t);
-double      vdot(t_point vec, t_point vec2);
-t_point      vcross(t_point vec, t_point vec2);
-t_point      vunit(t_point vec);
-t_point  vmin(t_point vec1, t_point vec2);
-
-
+double	vlength(t_point vec);
+t_point	vplus(t_point vec, t_point vec2);
+t_point	vplus_(t_point vec, double x, double y, double z);
+t_point	vminus(t_point vec, t_point vec2);
+t_point	vminus_(t_point vec, double x, double y, double z);
+t_point	vmult(t_point vec, double t);
+t_point	vmult_(t_point vec, t_point vec2);
+t_point	vdivide(t_point vec, double t);
+double	vdot(t_point vec, t_point vec2);
+t_point	vcross(t_point vec, t_point vec2);
+t_point	vunit(t_point vec);
+t_point	vmin(t_point vec1, t_point vec2);
 #endif

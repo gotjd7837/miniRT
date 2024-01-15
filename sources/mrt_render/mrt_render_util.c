@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 07:45:08 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/15 16:20:40 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/15 20:22:43 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,4 +62,3 @@ void	set_face_normal(t_ray *r, t_point *obj_n)
 	else
 		*obj_n = vmult(*obj_n, -1);
 }
-
