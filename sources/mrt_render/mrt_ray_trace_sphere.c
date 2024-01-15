@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mrt_ray_trace_sphere.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: inlim <inlim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:40:48 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/15 13:37:08 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/15 14:47:30 by inlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ void	mrt_ray_trace_sphere(t_info *info, t_ray *ray)
 			ray->hit_point = mrt_ray_at(ray, hit_t);
 			ray->hit_obj = sphere;
 			ray->obj_normal = vunit(vminus(ray->hit_point, sphere->point));
+			set_face_normal(ray, &(ray->obj_normal));	//구가 카메라 감쌀때 처리
 		}
 		list = list->next;
 	}

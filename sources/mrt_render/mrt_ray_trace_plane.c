@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mrt_ray_trace_plane.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: inlim <inlim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 15:04:02 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/12 15:04:36 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/15 14:48:43 by inlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	mrt_ray_trace_plane(t_info *info, t_ray *ray)
 			ray->hit_point = mrt_ray_at(ray, hit_t);
 			ray->hit_obj = plane;
 			ray->obj_normal = plane->vector;
+			set_face_normal(ray, &(ray->obj_normal));	//구가 카메라 감쌀때 처리
 		}
 		list = list->next;
 	}
