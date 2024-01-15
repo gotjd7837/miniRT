@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mrt_parse_insert_util.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: inlim <inlim@student.42seoul.kr>           +#+  +:+       +#+        */
+/*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/02 17:46:33 by haeseong          #+#    #+#             */
-/*   Updated: 2024/01/13 01:57:05 by inlim            ###   ########.fr       */
+/*   Updated: 2024/01/15 12:51:46 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,9 @@ void	mrt_parse_insert_vector(char *line_info, t_point *vector)
 	vector->x = mrt_atod(xyz[0]);
 	vector->y = mrt_atod(xyz[1]);
 	vector->z = mrt_atod(xyz[2]);
+	if (vector->x < -1 || vector->x > 1 || vector->y < -1 || vector->y > 1
+		|| vector->z < -1 || vector->z > 1)
+		mrt_print_err("Incorrect information for vector\n");
 	*vector = vunit(*vector);
 	while (i < 3)
 		free(xyz[i++]);
@@ -102,6 +105,8 @@ void	mrt_parse_insert_ratio(char *line_info, double *ratio)
 	if (mrt_split_size(ratio_info) != 1)
 		mrt_print_err("Incorrect information for ratio\n");
 	*ratio = mrt_atod(ratio_info[0]);
+	if (*ratio < 0 || *ratio > 1)
+		mrt_print_err("Incorrect information for ratio\n");
 	while (i < 1)
 		free(ratio_info[i++]);
 	free(ratio_info);

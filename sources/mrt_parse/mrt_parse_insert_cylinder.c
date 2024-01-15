@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:14:54 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/05 16:42:58 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/15 13:34:36 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ void	mrt_parse_insert_cylinder(char **line_info, t_info *info)
 		mrt_print_err("Do not input color for Cylinder\n");
 	else
 		mrt_parse_insert_color(line_info[5], &(cylinder->color));
+	// if (mrt_parse_insert_cylinder_2(line_info, ) == 1)
+	// 	return ;
 	if (line_info[6] == NULL)
 	{
 		mrt_lst_add_back(&(info->cylinder), mrt_lst_new_node(cylinder));

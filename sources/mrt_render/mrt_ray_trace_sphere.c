@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/12 16:40:48 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/13 10:32:46 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/15 13:37:08 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ double	mrt_hit_sphere(t_ray *ray, t_sphere *sphere)
 	double	c;
 	double	discriminant;
 
+	double	root;
+
 	oc = vminus(ray->point, sphere->point);
 	a = vlength2(ray->vector);
 	half_b = vdot(ray->vector, oc);
@@ -27,8 +29,12 @@ double	mrt_hit_sphere(t_ray *ray, t_sphere *sphere)
 	discriminant = half_b * half_b - a * c;
 	if (discriminant < 0)
 		return (FALSE);
-	//구가 카메라 감쌀때 에러처리
-	return ((-half_b - sqrt(discriminant)) / a);
+	root = (-half_b - sqrt(discriminant)) / a;
+	if (root < EPSILON)
+		root = (-half_b + sqrt(discriminant)) / a;
+	if (root < EPSILON)
+		return (FALSE);
+	return (root);
 }
 
 void	mrt_ray_trace_sphere(t_info *info, t_ray *ray)

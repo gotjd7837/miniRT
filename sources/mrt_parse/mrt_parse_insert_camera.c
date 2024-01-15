@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/23 18:14:52 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/05 16:42:24 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/15 12:50:47 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,8 @@ void	mrt_parse_insert_camera_fov(char *line_info, double *fov)
 	if (mrt_split_size(fov_info) != 1)
 		mrt_print_err("Incorrect information for fov\n");
 	*fov = mrt_atoi(line_info);
+	if (*fov < 0 || *fov > 180)
+		mrt_print_err("Incorrect information for fov\n");
 	while (i < 1)
 		free(fov_info[i++]);
 	free(fov_info);
