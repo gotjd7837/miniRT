@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: inlim <inlim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:33:22 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/13 10:28:29 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/14 19:48:49 by inlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@
 # define AMBIENT_IDX 1
 # define CAMERA_IDX 2
 # define LIGHT_IDX 3
+# define UP 1
+# define DOWN -1
 
 typedef struct s_point	t_color;
 
@@ -128,6 +130,15 @@ typedef struct s_info
 	t_list		*cylinder;
 }	t_info;
 
+typedef struct s_discrimination
+{
+	double	a;
+	double	b;
+	double	c;
+	double	expression;
+}	t_discrimination;
+
+
 //mrt_parse
 t_info	*mrt_parse(char *file_name);
 char	*mrt_parse_return_file_path(char *file_name);
@@ -177,13 +188,20 @@ void	mrt_rescale_color(t_color *color);
 void	mrt_color_overflow(t_color *color);
 void	mrt_get_camera_info(t_camera *camera);
 
+// mrt_shadow
+int	mrt_shadow(t_info *info, t_ray *ray, t_point light_vec, double light_len);
 
 double	mrt_hit_sphere(t_ray *ray, t_sphere *sphere);
 double	mrt_hit_plane(t_ray *ray, t_plane *plane);
 double	mrt_hit_cylinder(t_ray *ray, t_cylinder *cy);
 double	mrt_hit_pillar(t_ray *ray, t_cylinder *cy);
-double	mrt_hit_upper_disk(t_ray *ray, t_cylinder *cy);
-double	mrt_hit_down_disk(t_ray *ray, t_cylinder *cy);
+double mrt_hit_disk(t_ray *ray, t_cylinder *cy, int sign);
+
+double	choice_pillar_root(t_ray *ray, t_cylinder *cy, double roots[]);
+void	init_pillar_dis(t_ray *ray, t_cylinder *cy, t_discrimination *dis);
+void	renew_t_pillar(t_ray *ray, t_cylinder *cy, double hit_t);
+void	renew_t_disk(t_ray *ray, t_cylinder *cy, double hit_t, int sign);
+
 
 //vec_util
 t_point	vec3(double x, double y, double z);
