@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:07:24 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/15 13:45:50 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/15 19:15:53 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@ t_color	mrt_get_specular(t_info *info, t_ray *ray)
 	light_vec = vminus(ray->hit_point, light->point);
 	light_len = vlength(light_vec);
 	light_vec = vunit(light_vec);
-	// if (mrt_shadow(info, ray, light_vec, light_len))
-	// 	return (color3(0, 0, 0));
+	if (mrt_shadow(info, ray, vmult(light_vec, -1), light_len))
+		return (color3(0, 0, 0));
 	reflect_vec = vminus(vmult(ray->obj_normal,
 				2 * vdot(ray->obj_normal, light_vec)), light_vec);
 	specular = vplus(specular, vmult(light->color,
-				pow(fmax(vdot(reflect_vec, ray->vector), 0), 100)));
+				pow(fmax(vdot(reflect_vec, ray->vector), 0), 42)));
 	mrt_rescale_color(&specular);
 	return (specular);
 }
@@ -71,10 +71,10 @@ t_color	mrt_get_color(t_info *info, t_ray *ray)
 
 	light_color = color3(0, 0, 0);
 	light_color = vplus(light_color, mrt_get_diffuse(info, ray));
-	light_color = vplus(light_color, mrt_get_specular(info, ray));
 	light_color = vplus(light_color, mrt_get_ambient(info, ray));
 	mrt_rescale_color(&ray->color);
 	light_color = vmult_(light_color, ray->color);
+	light_color = vplus(light_color, mrt_get_specular(info, ray));
 	mrt_color_overflow(&light_color);
 	return (light_color);
 }
