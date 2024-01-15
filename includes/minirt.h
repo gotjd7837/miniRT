@@ -6,7 +6,7 @@
 /*   By: inlim <inlim@student.42seoul.kr>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:33:22 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/14 19:48:49 by inlim            ###   ########.fr       */
+/*   Updated: 2024/01/15 14:44:14 by inlim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -187,6 +187,7 @@ void	mrt_ray_trace_cylinder(t_info *info, t_ray *ray);
 void	mrt_rescale_color(t_color *color);
 void	mrt_color_overflow(t_color *color);
 void	mrt_get_camera_info(t_camera *camera);
+void    set_face_normal(t_ray *r, t_point *obj_n);
 
 // mrt_shadow
 int	mrt_shadow(t_info *info, t_ray *ray, t_point light_vec, double light_len);
