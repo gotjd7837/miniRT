@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:33:22 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/15 20:16:34 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/15 21:06:01 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -192,7 +192,7 @@ void	mrt_mlx_loop(t_info *info);
 
 // mrt_shadow
 int		mrt_shadow(t_info *info, t_ray *ray, t_point light_vec, double light_l);
-double	mrt_hit_sphere(t_ray *ray, t_sphere *sphere);
+double	mrt_hit_sphere(t_ray *ray, t_sphere *sphere, double hit_t);
 double	mrt_hit_plane(t_ray *ray, t_plane *plane);
 double	mrt_hit_cylinder(t_ray *ray, t_cylinder *cy);
 double	mrt_hit_pillar(t_ray *ray, t_cylinder *cy);
