@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 19:20:18 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/10 03:56:27 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/15 16:41:05 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,24 +24,14 @@ void	mrt_parse_free_line(char *line, char **line_info)
 	return ;
 }
 
-void	mrt_parse_insert_element(char **line_info, t_info *info)
+void	mrt_parse_check_element(t_info *info)
 {
-	static int	flags;
-
-	if (!mrt_strcmp(line_info[0], "A") && !mrt_bit_get(flags, AMBIENT_IDX))
-		mrt_parse_insert_ambient(line_info, info, &flags);
-	else if (!mrt_strcmp(line_info[0], "C") && !mrt_bit_get(flags, CAMERA_IDX))
-		mrt_parse_insert_camera(line_info, info, &flags);
-	else if (!mrt_strcmp(line_info[0], "L") && !mrt_bit_get(flags, LIGHT_IDX))
-		mrt_parse_insert_light(line_info, info, &flags);
-	else if (!(mrt_strcmp(line_info[0], "sp")))
-		mrt_parse_insert_sphere(line_info, info);
-	else if (!(mrt_strcmp(line_info[0], "pl")))
-		mrt_parse_insert_plane(line_info, info);
-	else if (!(mrt_strcmp(line_info[0], "cy")))
-		mrt_parse_insert_cylinder(line_info, info);
-	else
-		mrt_print_err("Invalid identifier\n");
+	if (info->ambient == NULL)
+		mrt_print_err("Ambient light is not exist\n");
+	if (info->camera == NULL)
+		mrt_print_err("Camera is not exist\n");
+	if (info->light == NULL)
+		mrt_print_err("Light is not exist\n");
 }
 
 void	*mrt_parse_load_file(char *file_path, t_info *info)
@@ -66,6 +56,7 @@ void	*mrt_parse_load_file(char *file_path, t_info *info)
 		mrt_parse_insert_element(line_info, info);
 		mrt_parse_free_line(line, line_info);
 	}
+	mrt_parse_check_element(info);
 	close(fd);
 	return (info);
 }

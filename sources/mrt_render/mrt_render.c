@@ -6,7 +6,7 @@
 /*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 07:41:48 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/13 10:28:13 by haekang          ###   ########.fr       */
+/*   Updated: 2024/01/15 16:22:26 by haekang          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	mrt_render(t_info *info)
 	int			y;
 
 	mrt_get_camera_info(info->camera);
-	y = HEIGHT - 1;
-	while (y >= 0)
+	y = 0;
+	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
@@ -40,11 +40,10 @@ void	mrt_render(t_info *info)
 			ray.point = info->camera->point;
 			ray.vector = mrt_get_ray_vector(info, x, y);
 			color_pixel = mrt_ray_trace(info, &ray);
-			mrt_put_pixel(info, x, y, color_pixel);
+			mrt_put_pixel(info, WIDTH - x, y, color_pixel);
 			x++;
 		}
-		y--;
+		y++;
 	}
-	mlx_put_image_to_window(info->mlx, info->win, info->img.img, 0, 0);
-	mlx_loop(info->mlx);
+	mrt_mlx_loop(info);
 }
