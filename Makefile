@@ -6,7 +6,7 @@
 #    By: inlim <inlim@student.42seoul.kr>           +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/12/19 16:29:11 by haekang           #+#    #+#              #
-#    Updated: 2024/01/15 20:09:21 by inlim            ###   ########.fr        #
+#    Updated: 2024/01/16 13:32:54 by inlim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,6 +66,7 @@ OBJS = $(SRCS:%.c=%.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(HEADERS)
+	make -C $(MLX_DIR)
 	$(CC) $(MFLAGS) $(OBJS) $(MLX_DIR)/libmlx.a -o $(NAME)
 
 %.o : %.c
@@ -73,6 +74,7 @@ $(NAME): $(OBJS) $(HEADERS)
 
 clean:
 	rm -Rf $(OBJS)
+	make -C $(MLX_DIR) clean
 
 fclean: clean
 	rm -Rf $(NAME)
