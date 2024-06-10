@@ -1,13 +1,84 @@
-# Summary
-This project is an introduction to the beautiful world of Raytracing.
-Once completed you will be able to render simple Computer-Generated-Images and you
-will never be afraid of implementing mathematical formulas again.
+# 1. miniRT
 
-# Team users
-* haekang (Haeseong Kang)
-* inlim
+이 프로젝트는 `.rt`로 끝나는 input file을 인자로 받아 도형을 렌더링하는 RT(Ray tracing) rendering engine을 구현합니다.
 
-# Coding conventions
+# 2. 실행 방법
 
-* All codes must comply with official 42 norm.
-* All functions must begin with the prefix 'mrt_'.
+루트에 (all, clean, fclean, re)규칙을 제공하는 `Makefile`이 있습니다. 이를 통해 소스 코드를 컴파일 하여 `miniRT`프로그램을 생성합니다.
+> make all
+
+`.rt`로 끝나는 input file을 인자로 받아 프로그램을 실행해야 합니다. input file이 `.rt`로 끝나지 않거나 인자가 없으면 프로그램이 실행되지 않습니다.
+> ./miniRT \<test.rt>
+**.rt 파일은 args 폴더에 저장해야 인자로 사용할 수 있습니다.**
+
+# 3. 허용 함수
+
+1. `open` on \<fcntl.h>
+2. `close` on \<fcntl.h>
+3. `read` on \<unistd.h>
+4. `write` on \<unistd.h>
+5. `printf` on \<stdio.h>
+6. `perror` on \<stdio.h>
+7. `strerror` on \<string.h>
+8. `malloc` on \<stdlib.h>
+9. `free` on \<stdlib.h>
+10. `exit` on \<stdlib.h>
+
+# 4. input file(.rt) 규칙
+
+`miniRT`는 구, 원통, 무한 평면, 광원과 이들에 의해 발생하는 그림자를 렌더링 할 수 있습니다.
+`.rt`파일을 통해 렌더링에 필요한 카메라, 광원, 각 Object에 대한 정보를 다음의 규칙에 맞게 입력해야합니다. 
+
+1. **주변광 (Ambient lightning):**
+> A 0.2   255,255,255
+- 식별자: **A**
+- 주변광의 비율 in range (0.0~1.0 범위): **0.2**
+- R,G,B 색상 (0~255 범위): **255, 255, 255**
+
+2. **카메라 (Camera):**
+> C -50.0,0,20   0,0,1   70
+- 식별자: **C**
+- x,y,z 좌표: **-50.0,0,20**
+- 정규화된 방향 벡터 (각 x,y,z 축에 대해 -1~1 범위): **0.0,0.0,1.0**
+- FOV (시야각, 수평 시야각, 0~180도 범위): **70**
+
+3. **조명 (Light):**
+> L -40.0,50.0,0.0   0.6   10,0,255
+- 식별자: **L**
+- 조명 지점의 x,y,z 좌표: **-40.0,50.0,0.0**
+- 조명 밝기 비율 in range (0.0~1.0 범위): **0.6**
+- R,G,B 색상 (0~255 범위): **10, 0, 255**
+
+4. **구체 (Sphere):**
+> sp 0.0,0.0,20.6   12.6   10,0,255
+- 식별자: **sp**
+- 구체 중심의 x,y,z 좌표: **0.0,0.0,20.6**
+- 구체의 지름: **12.6**
+- R,G,B 색상 (0~255 범위): **10, 0, 255**
+
+5. **무한 평면 (Cylinder):**
+> pl 0.0,0.0,-10.0   0.0,1.0,0.0   0,0,225
+- 식별자: **pl**
+- 평면의 한 점의 x,y,z 좌표: **0.0,0.0,-10.0**
+- 정규화된 법선 벡터 (각 x,y,z 축에 대해 -1~1 범위): **0.0,1.0,0.0**
+- R,G,B 색상 (0~255 범위): **0,0,225**
+
+5. **원통 (Plane):**
+> cy 50.0,0.0,20.6   0.0,0.0,1.0   14.2   21.42   10,0,255
+- 식별자: **cy**
+- 원기둥의 중심의 x,y,z 좌표: **50.0,0.0,20.6**
+- 원기둥 축의 3차원 정규화된 벡터 (각 x,y,z 축에 대해 -1~1 범위): **0.0,0.0,1.0**
+- 원기둥의 지름: **14.2**
+- 원기둥의 높이: **21.42**
+- R,G,B 색상 (0~255 범위): **10, 0, 255**
+
+# 5. Features
+
+1. MLX library (école 42 교육용 버전 **OpenGL**)를 사용합니다 라이브러리는 includes/mlx/에 저장되어 있습니다.
+2. 구, 원통, 무한 평면, 광원, 그리고 이들에 의해 생성되는 그림자를 렌더링합니다.
+3. 3차원 공간에 카메라(화면), 광원 그리고 Object들을 배치하고, 카메라에서 출발하는 광선(ray)가 Object에 부딪힐 때 조명을 계산하여 해당 픽셀을 색칠해 화면에 렌더링합니다.
+4. 광선(ray)과 Object의 교점이 발생하면 `phong reflection 조명 모델`을 적용하여 표면의 최종적인 RGB 값을 결정합니다.
+
+
+# 7. Demo
+
