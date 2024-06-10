@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minirt.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: haeseong <haeseong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/19 16:33:22 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/15 21:06:01 by haekang          ###   ########.fr       */
+/*   Updated: 2024/06/10 21:33:54 by haeseong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 # include <string.h>
 # include "mlx/mlx.h"
 
-# define WIDTH 1920
-# define HEIGHT 1080
+# define WIDTH 1366
+# define HEIGHT 768
 # define INF 1000000000
 # define EPSILON 1e-10
 # define TRUE 1
