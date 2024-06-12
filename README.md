@@ -14,20 +14,7 @@
 
 **arg 폴더에 .rt파일을 생성해 생성 규칙에 맞게 객체들의 정보를 입력하고 프로그램의 인수로 사용하면 해당 정보를 바탕으로 렌더링합니다.**
 
-# 3. 허용 함수
-
-1. `open` on \<fcntl.h>
-2. `close` on \<fcntl.h>
-3. `read` on \<unistd.h>
-4. `write` on \<unistd.h>
-5. `printf` on \<stdio.h>
-6. `perror` on \<stdio.h>
-7. `strerror` on \<string.h>
-8. `malloc` on \<stdlib.h>
-9. `free` on \<stdlib.h>
-10. `exit` on \<stdlib.h>
-
-# 4. input file(.rt) 규칙
+# 3. input file(.rt) 규칙
 
 `miniRT`는 구, 원통, 무한 평면, 광원과 이들에 의해 발생하는 그림자를 렌더링 할 수 있습니다.
 `.rt`파일을 통해 렌더링에 필요한 카메라, 광원, 각 Object에 대한 정보를 다음의 규칙에 맞게 입력해야합니다. 
@@ -81,13 +68,25 @@
 - R,G,B 색상 (0~255 범위): **10, 0, 255**
 
 
-# 5. Features
+# 4. Features
 
 1. MLX library (école 42 교육용 버전 **OpenGL**)를 사용합니다 라이브러리는 includes/mlx/에 저장되어 있습니다.
 2. 구, 원통, 무한 평면, 광원, 그리고 이들에 의해 생성되는 그림자를 렌더링합니다.
 3. 3차원 공간에 카메라(화면), 광원 그리고 Object들을 배치하고, 카메라에서 출발하는 광선(ray)가 Object에 부딪힐 때 조명을 계산하여 해당 픽셀을 색칠해 화면에 렌더링합니다.
 4. 광선(ray)과 Object의 교점이 발생하면 `phong reflection 조명 모델`을 적용하여 표면의 최종적인 RGB 값을 결정합니다.
 
+# 5. 허용 함수
 
-# 7. Demo
+1. `open` on \<fcntl.h>
+2. `close` on \<fcntl.h>
+3. `read` on \<unistd.h>
+4. `write` on \<unistd.h>
+5. `printf` on \<stdio.h>
+6. `perror` on \<stdio.h>
+7. `strerror` on \<string.h>
+8. `malloc` on \<stdlib.h>
+9. `free` on \<stdlib.h>
+10. `exit` on \<stdlib.h>
+
+# 6. Demo
 
