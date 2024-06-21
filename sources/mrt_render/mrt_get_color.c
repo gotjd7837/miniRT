@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mrt_get_color.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: haekang <haekang@student.42.fr>            +#+  +:+       +#+        */
+/*   By: haeseong <haeseong@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/01/10 10:07:24 by haekang           #+#    #+#             */
-/*   Updated: 2024/01/15 19:15:53 by haekang          ###   ########.fr       */
+/*   Updated: 2024/06/21 18:17:22 by haeseong         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,16 +65,24 @@ t_color	mrt_get_diffuse(t_info *info, t_ray *ray)
 	return (diffuse);
 }
 
+/**
+ * ray의 교점의 최종 color을 계산하여 반환합니다.
+ * phong reflection model (난반사, 정반사, Ambient)을 적용합니다.
+ * 반사된 빛(specular), 난반사 광(diffuse), Ambient 광을 계산하고, 이들을 합하여 최종적인 color를 계산합니다.
+ * 색상의 범위를 조정하기 위해 mrt_rescale_color 함수가 호출되고, 색상이 오버플로우되지 않도록 mrt_color_overflow 함수가 호출됩니다.
+ *
+ * return: t_color
+ */
 t_color	mrt_get_color(t_info *info, t_ray *ray)
 {
 	t_color	light_color;
 
 	light_color = color3(0, 0, 0);
-	light_color = vplus(light_color, mrt_get_diffuse(info, ray));
-	light_color = vplus(light_color, mrt_get_ambient(info, ray));
+	light_color = vplus(light_color, mrt_get_diffuse(info, ray)); // 난반사 plus
+	light_color = vplus(light_color, mrt_get_ambient(info, ray)); // ambient plus
 	mrt_rescale_color(&ray->color);
 	light_color = vmult_(light_color, ray->color);
-	light_color = vplus(light_color, mrt_get_specular(info, ray));
+	light_color = vplus(light_color, mrt_get_specular(info, ray)); // 정반사 plus
 	mrt_color_overflow(&light_color);
 	return (light_color);
 }
