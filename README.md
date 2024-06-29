@@ -1,6 +1,7 @@
 # 1. miniRT
 
 이 프로젝트는 `.rt`로 끝나는 input file을 인자로 받아 도형을 렌더링하는 RT(Ray tracing) rendering engine을 구현합니다.
+<img width="1363" alt="스크린샷 2024-06-29 오후 5 17 31" src="https://github.com/gotjd7837/miniRT/assets/111740828/e9c4d1c1-581c-41f3-a56a-7a424409ca30">
 
 # 2. 실행 방법
 
